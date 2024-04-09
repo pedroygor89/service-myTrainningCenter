@@ -1,11 +1,11 @@
-export interface Player {
+export interface Athlete {
   readonly _id: string;
   readonly email: string;
   readonly phone: string;
   name: string;
   ranking: number;
   positionRanking: number;
-  urlPhotoPlayer: string;
+  urlPhotoAthlete: string;
   category: string;
   gender?: string;
   cpf?: string;

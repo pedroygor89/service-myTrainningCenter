@@ -8,12 +8,15 @@ export class AthletesService {
   private athletes: Athlete[] = [];
   private readonly logger = new Logger(AthletesService.name);
 
-  async createAthlete(createAthleteDto: CreateAthleteDto): Promise<string> {
+  async createAthlete(createAthleteDto: CreateAthleteDto): Promise<void> {
     this.logger.log(`createAthleteDto: ${JSON.stringify({ createAthleteDto })}`);
-    return 'This action adds a new athlete';
-
-    await this.create(createAthleteDto);
+     await this.create(createAthleteDto);
   }
+
+  async findAllAthlete(): Promise<Athlete[]> {
+     return await this.athletes;
+  }
+
 
   private create(createAthleteDto: CreateAthleteDto) {
     const { name, email, phone } = createAthleteDto;
@@ -30,9 +33,6 @@ export class AthletesService {
     this.logger.log(`athlete: ${JSON.stringify(athlete)}`);
     this.athletes.push(athlete);
   }
-    // async findAll() {
-    //     return 'This action returns all athletes';
-    // }
 
     // async findOne(id: string) {
     //     return `This action returns a #${id} athlete`;

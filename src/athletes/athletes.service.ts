@@ -9,14 +9,25 @@ export class AthletesService {
   private readonly logger = new Logger(AthletesService.name);
 
   async createAthlete(createAthleteDto: CreateAthleteDto): Promise<void> {
-    this.logger.log(`createAthleteDto: ${JSON.stringify({ createAthleteDto })}`);
-     await this.create(createAthleteDto);
+    this.logger.log(
+      `createAthleteDto: ${JSON.stringify({ createAthleteDto })}`,
+    );
+
+    const { email } = createAthleteDto;
+    const foundAthlete = await this.athletes.find(
+      (athlete) => athlete.email === email,
+    );
+
+    if (foundAthlete) {
+      await this.update(foundAthlete, createAthleteDto);
+    } else {
+      await this.create(createAthleteDto);
+    }
   }
 
   async findAllAthlete(): Promise<Athlete[]> {
-     return await this.athletes;
+    return await this.athletes;
   }
-
 
   private create(createAthleteDto: CreateAthleteDto) {
     const { name, email, phone } = createAthleteDto;
@@ -34,16 +45,20 @@ export class AthletesService {
     this.athletes.push(athlete);
   }
 
-    // async findOne(id: string) {
-    //     return `This action returns a #${id} athlete`;
-    // }
+  // async findOne(id: string)
+  //     return `This action returns a #${id} athlete`;
+  // }
 
-    // async update(id: string) {
-    //     return `This action updates a #${id} athlete`;
-    // }
+  private update(
+    foundAthlete: Athlete,
+    createAthleteDto: CreateAthleteDto,
+  ) {
+    const { name } = createAthleteDto;
+    foundAthlete.name = name;
+    return foundAthlete;
+  }
 
-    // async remove(id: string) {
-    //     return `This action removes a #${id} athlete`;
-    // }
-
+  // async remove(id: string) {
+  //     return `This action removes a #${id} athlete`;
+  // }
 }

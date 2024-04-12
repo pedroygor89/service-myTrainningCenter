@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { CreateAthleteDto } from './dto/createAthletes.dto';
 import { Athlete } from './interfaces/athletes.interface';
 import { randomUUID } from 'crypto';
+import { NotFoundError } from 'rxjs';
+import { error } from 'console';
 
 @Injectable()
 export class AthletesService {
@@ -29,6 +31,16 @@ export class AthletesService {
     return await this.athletes;
   }
 
+  async findAthletebyEmail(email:string): Promise<Athlete>{
+    const athletes = await this.athletes;
+    const foundAthlete = athletes.find(athlete => athlete.email === email);
+    if (foundAthlete) {
+      return foundAthlete;
+    }else {
+      throw new Error(`Athlete ${email} not found`);
+    } 
+  }
+
   private create(createAthleteDto: CreateAthleteDto) {
     const { name, email, phone } = createAthleteDto;
     const athlete = {
@@ -45,7 +57,7 @@ export class AthletesService {
     this.athletes.push(athlete);
   }
 
-  // async findOne(id: string)
+  // async findOne(): Promise<Athlete>{
   //     return `This action returns a #${id} athlete`;
   // }
 
@@ -58,7 +70,14 @@ export class AthletesService {
     return foundAthlete;
   }
 
-  // async remove(id: string) {
-  //     return `This action removes a #${id} athlete`;
-  // }
+   async deleteAthlete(email: string): Promise<Athlete> {
+      const foundAthlete = this.athlete.find(athlete => athlete.email === email);
+      if (foundAthlete) {
+        this.athletes = this.athletes.filter(athlete => athlete.email !== email);
+        return foundAthlete;
+      } else {
+        throw new Error(`Athlete ${email} not found`);
+      }
+
+  }
 }

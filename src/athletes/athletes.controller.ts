@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, Query } from '@nestjs/common';
 import { CreateAthleteDto } from './dto/createAthletes.dto';
 import { AthletesService } from './athletes.service';
 import { Athlete } from './interfaces/athletes.interface';
@@ -13,7 +13,18 @@ export class AthletesController {
   }
 
   @Get()
-  async findAthlete(): Promise<Athlete[]> {
-    return this.athletesService.findAllAthlete();
-  }
+  async findAthlete(
+    @Query('email') email: string): Promise<Athlete[] | Athlete> {
+      if (email) {
+        return this.athletesService.findAthletebyEmail(email);  
+      } else {
+        return this.athletesService.findAllAthlete();
+      }
+    }
+
+    @Post()
+    async deleteAthelte(
+      email: string): Promise<void> {
+      this.athletesService.deleteAthelte(email);
+    }
 }

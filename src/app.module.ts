@@ -6,8 +6,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://applicationAuth:RMtilkbQselI6Aw8@mytranningcenter.dsyay0i.mongodb.net/',
-    {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false}),
+    MongooseModule.forRoot('mongodb+srv://applicationAuth:RMtilkbQselI6Aw8@mytranningcenter.dsyay0i.mongodb.net/'),
     AthletesModule],
   controllers: [],
   providers: [],

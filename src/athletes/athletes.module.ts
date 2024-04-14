@@ -7,7 +7,7 @@ import { athleteSchema } from './interfaces/athlete.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([{name: 'Athlete', schema: athleteSchema, collection:'athletes'}])
-  ]
+  ],
   controllers: [AthletesController],
   providers: [AthletesService],
 })

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Logger, Post, Query } from '@nestjs/common';
 import { CreateAthleteDto } from './dto/createAthletes.dto';
 import { AthletesService } from './athletes.service';
 import { Athlete } from './interfaces/athletes.interface';
@@ -22,7 +22,7 @@ export class AthletesController {
       }
     }
 
-    @Post()
+    @Delete()
     async deleteAthelte(
       email: string): Promise<void> {
       this.athletesService.deleteAthelte(email);

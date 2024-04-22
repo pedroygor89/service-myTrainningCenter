@@ -8,7 +8,7 @@ export interface Athlete extends Document{
   ranking: number;
   positionRanking: number;
   urlPhotoAthlete: string;
-  category: string;
+  categories: string;
   gender?: string;
   cpf?: string;
 }

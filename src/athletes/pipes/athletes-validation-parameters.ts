@@ -14,9 +14,9 @@ export class athletesValidationParameters implements PipeTransform {
     if (metadata.data === '_id' && value && !Types.ObjectId.isValid(value)) {
       throw new BadRequestException('You put an invalid ID. Please provide a valid ID');
     }
-   // if(!Types.ObjectId.isValid(value) && metadata.data === 'email' && value !== 'undefined') {
-    //  throw new BadRequestException('You put an invalid Email. Please provide a valid Email');
-    //}
+   if(!Types.ObjectId.isValid(value) && value && metadata.data === 'email') {
+      throw new BadRequestException('You put an invalid Email. Please provide a valid Email');
+  }
     return value;
   }
 }

@@ -14,7 +14,6 @@ import {
 import { CreateAthleteDto } from './dto/createAthletes.dto';
 import { AthletesService } from './athletes.service';
 import { Athlete } from './interfaces/athletes.interface';
-import e from 'express';
 import { athletesValidationParameters } from './pipes/athletes-validation-parameters';
 import { UpdateAthleteDto } from './dto/updateAthlete.dto';
 
@@ -66,6 +65,5 @@ export class AthletesController {
     @Param('_id', athletesValidationParameters) _id: string,
   ): Promise<void> {
       return this.athletesService.deleteAthelte(_id);
-   
   }
 }

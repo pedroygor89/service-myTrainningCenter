@@ -1,6 +1,4 @@
 import { ArrayMinSize, IsArray, IsNotEmpty, IsString } from "class-validator";
-import { create } from "domain"
-
 export class CreateCategoryDto {
     
     @IsString()

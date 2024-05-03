@@ -4,7 +4,6 @@ import { Athlete } from './interfaces/athletes.interface';
 import { Model } from 'mongoose'; // Fix for Problem 1
 import { InjectModel } from '@nestjs/mongoose'; // Fix for Problem 2
 import { UpdateAthleteDto } from './dto/updateAthlete.dto';
-import { log } from 'console';
 
 
 @Injectable()

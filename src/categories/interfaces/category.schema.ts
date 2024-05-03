@@ -20,7 +20,7 @@ export const CategorySchema = new mongoose.Schema(
         },
         description: {
           type: String,
-          required: true,
+        
         },
         operation: {
           type: String,
@@ -28,11 +28,11 @@ export const CategorySchema = new mongoose.Schema(
         },
         date: {
           type: Date,
-          required: true,
+       
         },
         location: {
           type: String,
-          required: true,
+     
         },
         value: {
           type: Number,
@@ -49,19 +49,7 @@ export const CategorySchema = new mongoose.Schema(
         email: {
           type: String,
           required: true,
-        },
-        phone: {
-          type: String,
-          required: true,
-        },
-        address: {
-          type: String,
-          required: true,
-        },
-        birthdate: {
-          type: Date,
-          required: true,
-        },
+        }
       },
     ],
   },
